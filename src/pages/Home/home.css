@@ -1,0 +1,7 @@
+.imgBox {
+    display: flex;
+}
+.imgBox img {
+    flex: 1 1 33%;
+    width: 100px;
+}
