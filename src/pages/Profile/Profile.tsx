@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {fetchProfile} from "../../redux/usersSlice";
 import {RootState} from "../../redux/STORE";
+import Preloader from "../../components/Preloader/Preloader";
+import {Box, Container, List, ListItem, Typography} from "@mui/material";
+import UserAva from "../../components/UserAva/UserAva";
 
 const Profile: React.FC = () => {
   const {id} = useParams();
@@ -12,34 +15,32 @@ const Profile: React.FC = () => {
   }, [id, dispatch]);
   const { userProfile, isLoading } = useSelector((state: RootState) => state.users);
   return (
-    <>
+    <React.Fragment>
       {isLoading ? (
-        <h2>Loading</h2>
+        <Preloader />
       ) : (
-        <section className="container">
-          <div className="user">
-            <img
-              className="user__ava"
-              src="https://avatars.mds.yandex.net/i?id=2a0000017a10350fa41388e643e00b6067d8-4116714-images-thumbs&n=13"
-              alt="avatar"
-            />
-            <div className="wrapper">
-              <h2 className="user__name">{userProfile.name}</h2>
-              <ul className="user__info">
-                <li>username: {userProfile.username}</li>
-                <li>email: {userProfile.email}</li>
-                <li>phone: {userProfile.phone}</li>
-                <li>website: {userProfile.website}</li>
-                <li>
+        <Container maxWidth={'lg'}>
+          <Box>
+            <UserAva />
+          </Box>
+          <Box>
+            <Box>
+              <Typography variant={'h4'} component={'h2'} >{userProfile.name}</Typography>
+              <List>
+                <ListItem>username: {userProfile.username}</ListItem>
+                <ListItem>email: {userProfile.email}</ListItem>
+                <ListItem>phone: {userProfile.phone}</ListItem>
+                <ListItem>website: {userProfile.website}</ListItem>
+                <ListItem>
                   address: {userProfile.address?.city},{" "}
                   {userProfile.address?.street},{userProfile.address?.suite}
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
+                </ListItem>
+              </List>
+            </Box>
+          </Box>
+        </Container>
       )}
-    </>
+    </React.Fragment>
   );
 }
 

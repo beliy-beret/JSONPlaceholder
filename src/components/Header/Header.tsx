@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.up('sm'))
   return(
-    <AppBar position={"static"}>
+    <AppBar position={"fixed"}>
       <Container maxWidth={"lg"} sx={{
         display: 'flex'
       }}>

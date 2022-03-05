@@ -4,7 +4,6 @@ import AppLayout from "./components/AppLayout/AppLayout";
 import Home from "./pages/Home/Home";
 import Users from "./pages/Users/Users";
 import Profile from "./pages/Profile/Profile";
-import './App.css';
 
 const App: React.FC = () => {
   return (
