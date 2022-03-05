@@ -1,23 +1,16 @@
 import React from 'react';
 import {Box, Container, Typography} from "@mui/material";
+import {useStyle} from "./homeStyle";
 
- const Home = () => {
+const Home = () => {
+  const {classes} = useStyle();
   return (
     <Container maxWidth={'md'}>
-      <Typography variant={'h2'} component={'h2'}>JSON placeholder project</Typography>
+      <Typography className={classes.title} component={'h2'}>JSON placeholder project</Typography>
       <Typography paragraph component={'p'}>
         React app with Redux state menegment and JSONPlaceholder API.
       </Typography>
-      <Box
-        className={'imgBox'}
-        sx={{
-          display: 'flex',
-          '& img': {
-            flex: '1 1 25%',
-            width: '100px'
-          }
-        }}
-      >
+      <Box className={classes.imgBox}>
         <img
           src="https://static-sl.insales.ru/images/articles/1/6852/375492/react.png"
           alt="react"
