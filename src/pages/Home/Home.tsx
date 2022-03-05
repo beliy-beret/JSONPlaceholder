@@ -1,6 +1,5 @@
 import React from 'react';
 import {Box, Container, Typography} from "@mui/material";
-import './home.css';
 
  const Home = () => {
   return (
@@ -9,7 +8,16 @@ import './home.css';
       <Typography paragraph component={'p'}>
         React app with Redux state menegment and JSONPlaceholder API.
       </Typography>
-      <Box className={'imgBox'}>
+      <Box
+        className={'imgBox'}
+        sx={{
+          display: 'flex',
+          '& img': {
+            flex: '1 1 25%',
+            width: '100px'
+          }
+        }}
+      >
         <img
           src="https://static-sl.insales.ru/images/articles/1/6852/375492/react.png"
           alt="react"
@@ -21,6 +29,10 @@ import './home.css';
         <img
           src="https://avatars.mds.yandex.net/i?id=2a00000179e8d3b88d586b7b37814abfdb95-3731807-images-thumbs&n=13"
           alt="JSON"
+        />
+        <img
+          src="https://miro.medium.com/max/1000/1*2f1lCdtqoP_BnPeZby3QRg.png"
+          alt="TS"
         />
       </Box>
     </Container>

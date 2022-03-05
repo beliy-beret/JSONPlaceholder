@@ -1,18 +1,16 @@
 import {makeStyles} from "tss-react/mui";
 
-export const useStyle = makeStyles()((theme) => {
+export const useStyle = makeStyles()(() => {
   return {
     navbarList: {
-      display: 'flex',
+      padding: '0.5rem',
     },
     navbarItem: {
-      display: 'flex',
-      justifyContent: 'center',
       '& a': {
         textDecoration: 'none',
-        fontSize: '1.5rem',
-        color: '#ffffff',
-        fontWeight: 'bold'
+        fontSize: '1rem',
+        color: 'grey',
+        fontWeight: 'bold',
       },
       '& a.active': {
         textDecoration: 'underline'

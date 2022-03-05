@@ -1,9 +1,9 @@
 import React from 'react';
 import {List, ListItem} from "@mui/material";
 import {NavLink} from "react-router-dom";
-import {useStyle} from "./navBarStyle";
+import {useStyle} from "./navbarStyle";
 
-const NavBar = () => {
+const Navbar = () => {
   const {classes} = useStyle();
   return(
     <List className={classes.navbarList}>
@@ -17,4 +17,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar;
+export default Navbar;
