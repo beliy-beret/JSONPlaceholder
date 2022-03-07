@@ -1,34 +1,32 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getProfile, getUsers } from "../API";
-import {User} from "../AppTypes";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getProfile, getUsers } from '../API';
+import { User } from '../AppTypes';
 
 type InitState = {
   isLoading: boolean;
   error: string | undefined;
   usersList: User[] | [];
   userProfile: User;
-}
+};
 
 export const fetchUsers = createAsyncThunk(
-  "users/fetchUsers",
+  'users/fetchUsers',
   async function () {
-    try{
+    try {
       return await getUsers();
-    }
-    catch(e: any){
-      throw Error(e.message)
+    } catch (e: any) {
+      throw Error(e.message);
     }
   }
 );
 
 export const fetchProfile = createAsyncThunk(
-  "users/fetchProfile",
+  'users/fetchProfile',
   async function (userId: number) {
-    try{
+    try {
       return await getProfile(userId);
-    }
-    catch(e: any){
-      throw Error(e.message)
+    } catch (e: any) {
+      throw Error(e.message);
     }
   }
 );
@@ -49,51 +47,51 @@ const initialState: InitState = {
       zipcode: '',
       geo: {
         lat: '',
-        lng: ''
-      }
+        lng: '',
+      },
     },
     company: {
       name: '',
       bs: '',
-      catchPhrase: ''
-    }
+      catchPhrase: '',
+    },
   },
   isLoading: false,
-  error: ''
-}
+  error: '',
+};
 
 const usersSlice = createSlice({
-  name: "users",
+  name: 'users',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchUsers.pending, (state: InitState) => {
       state.isLoading = true;
       state.error = '';
-    })
+    });
     builder.addCase(fetchUsers.fulfilled, (state: InitState, action) => {
       state.usersList = action.payload;
       state.isLoading = false;
       state.error = '';
-    })
+    });
     builder.addCase(fetchUsers.rejected, (state: InitState, action) => {
       state.error = action.error.message;
       state.isLoading = false;
-    })
+    });
     builder.addCase(fetchProfile.pending, (state: InitState) => {
       state.isLoading = true;
       state.error = '';
-    })
+    });
     builder.addCase(fetchProfile.fulfilled, (state: InitState, action) => {
       state.userProfile = action.payload[0];
       state.isLoading = false;
       state.error = '';
-    })
+    });
     builder.addCase(fetchProfile.rejected, (state: InitState, action) => {
       state.error = action.error.message;
       state.isLoading = false;
-    })
-  }
+    });
+  },
 });
 
 export default usersSlice.reducer;

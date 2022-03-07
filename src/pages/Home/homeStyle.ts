@@ -1,4 +1,4 @@
-import {makeStyles} from "tss-react/mui";
+import { makeStyles } from 'tss-react/mui';
 
 export const useStyle = makeStyles()((theme) => {
   return {
@@ -7,7 +7,7 @@ export const useStyle = makeStyles()((theme) => {
       fontWeight: 'bold',
       fontSize: '2.7rem',
       [theme.breakpoints.between('xs', 'sm')]: {
-        fontSize: '1.5rem'
+        fontSize: '1.5rem',
       },
     },
     imgBox: {
@@ -18,8 +18,8 @@ export const useStyle = makeStyles()((theme) => {
         width: '100px',
         [theme.breakpoints.down('sm')]: {
           flex: '1 1 50%',
-        }
-      }
-    }
-  }
-})
+        },
+      },
+    },
+  };
+});

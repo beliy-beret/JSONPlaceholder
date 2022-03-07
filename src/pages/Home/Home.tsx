@@ -1,12 +1,14 @@
 import React from 'react';
-import {Box, Container, Typography} from "@mui/material";
-import {useStyle} from "./homeStyle";
+import { Box, Container, Typography } from '@mui/material';
+import { useStyle } from './homeStyle';
 
 const Home = () => {
-  const {classes} = useStyle();
+  const { classes } = useStyle();
   return (
     <Container maxWidth={'md'}>
-      <Typography className={classes.title} component={'h2'}>JSON placeholder project</Typography>
+      <Typography className={classes.title} component={'h2'}>
+        JSON placeholder project
+      </Typography>
       <Typography paragraph component={'p'}>
         React app with Redux state menegment and JSONPlaceholder API.
       </Typography>
@@ -30,6 +32,6 @@ const Home = () => {
       </Box>
     </Container>
   );
-}
+};
 
 export default Home;

@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {fetchUsers} from "../../redux/usersSlice";
-import {RootState} from "../../redux/STORE";
-import {Container, Typography} from "@mui/material";
-import UserCard from "../../components/UserCard/userCard";
-import Preloader from "../../components/Preloader/Preloader";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsers } from '../../redux/usersSlice';
+import { RootState } from '../../redux/STORE';
+import { Container, Typography } from '@mui/material';
+import UserCard from '../../components/UserCard/userCard';
+import Preloader from '../../components/Preloader/Preloader';
 
 const Users = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
-  const { usersList, isLoading } = useSelector((state: RootState) => state.users);
+  const { usersList, isLoading } = useSelector(
+    (state: RootState) => state.users
+  );
   return (
     <Container maxWidth={'md'}>
       {isLoading ? (
@@ -24,9 +26,10 @@ const Users = () => {
             sx={{
               textAlign: 'center',
               textDecoration: 'underline',
-              marginBottom: '1rem'
+              marginBottom: '1rem',
             }}
-          >All users
+          >
+            All users
           </Typography>
           {usersList.map((user) => (
             <UserCard
@@ -41,6 +44,6 @@ const Users = () => {
       )}
     </Container>
   );
-}
+};
 
 export default Users;

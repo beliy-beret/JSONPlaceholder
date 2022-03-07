@@ -1,4 +1,4 @@
-import {makeStyles} from "tss-react/mui";
+import { makeStyles } from 'tss-react/mui';
 
 export const useStyle = makeStyles()(() => {
   return {
@@ -13,8 +13,8 @@ export const useStyle = makeStyles()(() => {
         fontWeight: 'bold',
       },
       '& a.active': {
-        textDecoration: 'underline'
-      }
+        textDecoration: 'underline',
+      },
     },
-  }
+  };
 });
