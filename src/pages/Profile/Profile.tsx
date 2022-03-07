@@ -4,14 +4,17 @@ import { useParams } from "react-router-dom";
 import {fetchProfile} from "../../redux/usersSlice";
 import {RootState} from "../../redux/STORE";
 import Preloader from "../../components/Preloader/Preloader";
-import {Box, Container, List, ListItem, Typography} from "@mui/material";
+import {Container, Grid} from "@mui/material";
 import UserAva from "../../components/UserAva/UserAva";
+import UserInfo from "../../components/UserInfo/UserInfo";
+import PostList from "../../components/PostList/PostList";
 
 const Profile: React.FC = () => {
   const {id} = useParams();
+  const userId = Number(id);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchProfile(Number(id)));
+    dispatch(fetchProfile(userId));
   }, [id, dispatch]);
   const { userProfile, isLoading } = useSelector((state: RootState) => state.users);
   return (
@@ -20,24 +23,15 @@ const Profile: React.FC = () => {
         <Preloader />
       ) : (
         <Container maxWidth={'lg'}>
-          <Box>
-            <UserAva />
-          </Box>
-          <Box>
-            <Box>
-              <Typography variant={'h4'} component={'h2'} >{userProfile.name}</Typography>
-              <List>
-                <ListItem>username: {userProfile.username}</ListItem>
-                <ListItem>email: {userProfile.email}</ListItem>
-                <ListItem>phone: {userProfile.phone}</ListItem>
-                <ListItem>website: {userProfile.website}</ListItem>
-                <ListItem>
-                  address: {userProfile.address?.city},{" "}
-                  {userProfile.address?.street},{userProfile.address?.suite}
-                </ListItem>
-              </List>
-            </Box>
-          </Box>
+          <Grid container spacing={3}>
+            <Grid item xs={4}>
+              <UserAva />
+            </Grid>
+            <Grid item xs={8}>
+              <UserInfo user={userProfile} />
+              <PostList id={userId} />
+            </Grid>
+          </Grid>
         </Container>
       )}
     </React.Fragment>

@@ -1,4 +1,3 @@
-
 export interface User {
   id: number;
   name: string;
@@ -17,4 +16,11 @@ type Address = {
   city: string;
   zipcode: string;
   geo: Geo;
+}
+
+export interface Post {
+  userId: number
+  id: number
+  title: string
+  body: string
 }
