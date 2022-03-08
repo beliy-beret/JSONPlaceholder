@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Paper, Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchPosts } from '../../redux/postsSlice';
 
@@ -14,7 +14,7 @@ const PostList: React.FC<Props> = ({ id }) => {
   }, [dispatch, id]);
   const { postList } = useAppSelector((state) => state.posts);
   return (
-    <Box>
+    <React.Fragment>
       {postList?.map((post) => (
         <Paper
           key={post.id}
@@ -30,7 +30,7 @@ const PostList: React.FC<Props> = ({ id }) => {
           <Typography paragraph={true}>{post.body}</Typography>
         </Paper>
       ))}
-    </Box>
+    </React.Fragment>
   );
 };
 

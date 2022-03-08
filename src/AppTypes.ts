@@ -1,5 +1,5 @@
 export interface User {
-  id: number;
+  id: number | null;
   name: string;
   username: string;
   email: string;
@@ -8,19 +8,20 @@ export interface User {
   company: Company;
   address: Address;
 }
-type Company = Record<'name' | 'catchPhrase' | 'bs', string>
-type Geo = Record<'lat' | 'lng', string>
+
+type Company = Record<'name' | 'catchPhrase' | 'bs', string>;
+type Geo = Record<'lat' | 'lng', string>;
 type Address = {
   street: string;
   suite: string;
   city: string;
   zipcode: string;
   geo: Geo;
-}
+};
 
 export interface Post {
-  userId: number
-  id: number
-  title: string
-  body: string
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
 }

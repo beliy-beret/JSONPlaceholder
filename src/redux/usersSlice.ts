@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getProfile, getUsers } from '../API';
+import { getUsers } from '../API';
 import { User } from '../AppTypes';
 
 type InitState = {
   isLoading: boolean;
   error: string | undefined;
   usersList: User[] | [];
-  userProfile: User;
 };
 
 export const fetchUsers = createAsyncThunk(
@@ -20,42 +19,8 @@ export const fetchUsers = createAsyncThunk(
   }
 );
 
-export const fetchProfile = createAsyncThunk(
-  'users/fetchProfile',
-  async function (userId: number) {
-    try {
-      return await getProfile(userId);
-    } catch (e: any) {
-      throw Error(e.message);
-    }
-  }
-);
-
 const initialState: InitState = {
   usersList: [],
-  userProfile: {
-    id: 0,
-    email: '',
-    phone: '',
-    website: '',
-    name: '',
-    username: '',
-    address: {
-      city: '',
-      street: '',
-      suite: '',
-      zipcode: '',
-      geo: {
-        lat: '',
-        lng: '',
-      },
-    },
-    company: {
-      name: '',
-      bs: '',
-      catchPhrase: '',
-    },
-  },
   isLoading: false,
   error: '',
 };
@@ -75,19 +40,6 @@ const usersSlice = createSlice({
       state.error = '';
     });
     builder.addCase(fetchUsers.rejected, (state: InitState, action) => {
-      state.error = action.error.message;
-      state.isLoading = false;
-    });
-    builder.addCase(fetchProfile.pending, (state: InitState) => {
-      state.isLoading = true;
-      state.error = '';
-    });
-    builder.addCase(fetchProfile.fulfilled, (state: InitState, action) => {
-      state.userProfile = action.payload[0];
-      state.isLoading = false;
-      state.error = '';
-    });
-    builder.addCase(fetchProfile.rejected, (state: InitState, action) => {
       state.error = action.error.message;
       state.isLoading = false;
     });
